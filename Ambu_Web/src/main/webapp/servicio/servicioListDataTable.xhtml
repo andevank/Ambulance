@@ -1,0 +1,137 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+
+<h:body>
+	<ui:composition template="/WEB-INF/facelets/template.xhtml">
+		<ui:define name="body">
+			<h:form id="frmServicios">
+				<p:growl id="msgs" showDetail="true" />
+				<p:panel header="Listado de Pacientes">
+					<p:dataTable id="rowEdit" var="servicios"
+						value="#{servicioVista.losServicios}" rows="50" paginator="true"
+						paginatorPosition="bottom" editable="true">
+
+						<p:column headerText="Codigo Servicio" width="45"
+							style="font-size:12px; text-align: center">
+							<h:outputText value="#{servicios.codigoServicio}" />
+						</p:column>
+
+						<p:column headerText="Fecha Servicio" width="90"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.fechaServicio}" />
+						</p:column>
+						<p:column headerText="Hora Servicio" width="90"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.horaServicio}" />
+						</p:column>
+							<p:column headerText="Estado Servicio" width="90" style="font-size:12px">
+							<h:outputText value="#{servicios.estado}" />
+						</p:column>
+						<p:column headerText="Operador" width="200" style="font-size:12px">
+							<h:outputText value="#{servicios.operador}" />
+						</p:column>
+						<p:column headerText="Cliente / Entidad" width="200"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.entidad}" />
+						</p:column>
+						<p:column headerText="Autoriza / Codigo" width="200"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.autorizaCodigo}" />
+						</p:column>
+						<p:column headerText="Hora Recogida" width="70"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.horaRecogida}" />
+						</p:column>
+						<p:column headerText="Hora Cita" width="70" style="font-size:12px">
+							<h:outputText value="#{servicios.horaCita}" />
+						</p:column>
+						<p:column headerText="Comentarios / Observaciones" width="200"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.observaciones}" />
+						</p:column>
+						<p:column headerText="Solicitante Servicio" width="200"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.solicitante}" />
+						</p:column>
+						<p:column headerText="Tratamiento Requerido" width="200"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.trasladoRequerimiento}" />
+						</p:column>
+						<p:column headerText="Perimetro Requerido" width="70"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.perimetroRequerido}" />
+						</p:column>
+						<p:column headerText="Nombre del Paciente" width="200"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.nombrePaciente}" />
+						</p:column>
+						<p:column headerText="Edad Paciente" width="70"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.edadPaciente}" />
+						</p:column>
+						<p:column headerText="Diagnostico" width="200"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.diagnostico}" />
+						</p:column>
+						<p:column headerText="Documento de Identidad" width="90"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.cedulaPaciente}" />
+						</p:column>
+						<p:column headerText="Telefono Pacienter" width="200"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.telefonoPaciente}" />
+						</p:column>
+						<p:column headerText="Lugar de Origen" width="200"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.lugarOrigen}" />
+						</p:column>
+						<p:column headerText="Lugar Destino" width="200"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.lugarDestino}" />
+						</p:column>
+						<p:column headerText="# Historia Clinica" width="70"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.historiaPaciente}" />
+						</p:column>
+						<p:column headerText="Movil Despachada" width="70"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.movilDespachada}" />
+						</p:column>
+						<p:column headerText="Hora Despacho Lugar Origen" width="100"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.horaDespachoOrigen}" />
+						</p:column>
+						<p:column headerText="Medico" width="200" style="font-size:12px">
+							<h:outputText value="#{servicios.medicoPaciente}" />
+						</p:column>
+						<p:column headerText="Llegada al sitio" width="70"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.horaLlegadaSitio}" />
+						</p:column>
+						<p:column headerText="Desplazamiento" width="200"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.desplazamiento}" />
+						</p:column>
+						<p:column headerText="Llegada al destino" width="70"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.horaLlegadaDestino}" />
+						</p:column>
+						<p:column headerText="Movil Dispobible" width="70"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.movilDisponible}" />
+						</p:column>
+					</p:dataTable>
+				</p:panel>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

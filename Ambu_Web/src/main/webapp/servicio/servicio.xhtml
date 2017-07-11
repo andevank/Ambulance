@@ -1,0 +1,335 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<ui:composition template="/WEB-INF/facelets/template.xhtml">
+		<ui:define name="body">
+			<h:form id="frmServicios">
+				<p:growl id="msgs" showDetail="true" />
+				<p:panel header="Gestionar Pacientes">
+					<h:outputText value="Usuario: #{usuariosVista.txtLogin}"
+						style="color:green" />
+					<p:spacer width="1095" height="10" />
+					<h:outputText value="Fecha: #{servicioVista.sbFecha}"
+						style="color:blue" />
+					<p:spacer width="20" height="10" />
+					<h:outputText value="Hora: #{servicioVista.sbHora}"
+						style="color:red" />
+					<p:spacer height="25" />
+
+					<!-- Cabecera datos operador y servicio-->
+					<h:panelGrid columns="10" border="0" focus="txtOperador">
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Operador:" style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtOperador"
+								binding="#{servicioVista.txtOperador}" style="font-size:12px"
+								size="25" onkeyup="this.value=this.value.toUpperCase()" />
+						</p:column>
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Cliente/Entidad:" style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtEntidad"
+								binding="#{servicioVista.txtEntidad}" style="font-size:12px"
+								size="25" onkeyup="this.value=this.value.toUpperCase()" />
+						</p:column>
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Autoriza / Codigo:" style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtAutoriza_Codigo"
+								binding="#{servicioVista.txtAutoriza_Codigo}"
+								style="font-size:12px" size="25"
+								onkeyup="this.value=this.value.toUpperCase()" />
+						</p:column>
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Hora Recogida:" style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtHoraRecogida"
+								binding="#{servicioVista.txtHora_Recogida}"
+								style="font-size:12px" size="12" />
+						</p:column>
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Hora Cita:" style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtHoraCita"
+								binding="#{servicioVista.txtHora_Cita}" style="font-size:12px"
+								size="12" />
+						</p:column>
+					</h:panelGrid>
+					<p:spacer height="10" />
+					<!-- Comentarios y Observaciones -->
+					<h:panelGrid columns="2" border="0">
+						<p:column>
+							<p:spacer height="10" />
+							<p:outputLabel value="Comentarios / Observaciones:"
+								style="font-size:12px" />
+							<p:spacer width="15" />
+						</p:column>
+						<p:column>
+							<p:spacer width="1" />
+							<p:inputTextarea id="txtObservaciones" cols="124" rows="3"
+								binding="#{servicioVista.txtObservaciones}"
+								style="font-size:12px"
+								onkeyup="this.value=this.value.toUpperCase()" />
+						</p:column>
+					</h:panelGrid>
+					<p:spacer height="10" />
+					<!-- datos solicitante y paciente -->
+					<h:panelGrid columns="10" border="0">
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Nombre Solicitante:" style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtSolictante" size="30"
+								binding="#{servicioVista.txtSolicitante}" style="font-size:12px"
+								onkeyup="this.value=this.value.toUpperCase()" />
+						</p:column>
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Traslado Requeirmiento:"
+								style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtTraslado" size="30"
+								binding="#{servicioVista.txtTraslado_Requerimiento}"
+								style="font-size:12px"
+								onkeyup="this.value=this.value.toUpperCase()" />
+						</p:column>
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Perimetro Requerido:"
+								style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtPerimetro"
+								binding="#{servicioVista.txtPerimetro_requerido}"
+								style="font-size:12px" size="30"
+								onkeyup="this.value=this.value.toUpperCase()" />
+						</p:column>
+					</h:panelGrid>
+					<p:spacer height="10" />
+					<!-- Datos del paciente -->
+					<h:panelGrid columns="10" border="0">
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Nombre Paciente:" style="font-size:12px" />
+							<p:spacer width="10" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtPaciente"
+								binding="#{servicioVista.txt_Nombre_Paciente}"
+								style="font-size:12px" size="24"
+								onkeyup="this.value=this.value.toUpperCase()" />
+						</p:column>
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Edad:" style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtEdadPaciente"
+								binding="#{servicioVista.txtEdad_Paciente}"
+								style="font-size:12px" size="3" />
+						</p:column>
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Diagnostico:" style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtDiagnostico"
+								binding="#{servicioVista.txtDiagnostico}" style="font-size:12px"
+								size="30" onkeyup="this.value=this.value.toUpperCase()" />
+						</p:column>
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Cedula:" style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtCedula"
+								binding="#{servicioVista.txtCedulaPaciente}"
+								style="font-size:12px" size="15" />
+						</p:column>
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Telefono:" style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtTelefono"
+								binding="#{servicioVista.txtTeléfono_Paciente}"
+								style="font-size:12px" size="25" />
+						</p:column>
+					</h:panelGrid>
+					<p:spacer height="10" />
+					<!-- datos recorrido paciente -->
+					<h:panelGrid columns="10" border="0">
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Lugar Origen:" style="font-size:12px" />
+							<p:spacer width="34" height="10" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtLugarOrigen" size="30"
+								binding="#{servicioVista.txtLugar_Origen}"
+								style="font-size:12px"
+								onkeyup="this.value=this.value.toUpperCase()" />
+						</p:column>
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Lugar Destino:" style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtLugarDestino"
+								binding="#{servicioVista.txtLugar_Destino}"
+								style="font-size:12px" size="30"
+								onkeyup="this.value=this.value.toUpperCase()" />
+						</p:column>
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Historia Clinica:" style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtHistoria"
+								binding="#{servicioVista.txtHistoriaPaciente}"
+								style="font-size:12px" size="20"
+								onkeyup="this.value=this.value.toUpperCase()" />
+						</p:column>
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Movil Despachada:" style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtMovilEnviada"
+								binding="#{servicioVista.txtMovil_Despachada}"
+								style="font-size:12px" size="15"
+								onkeyup="this.value=this.value.toUpperCase()" />
+						</p:column>
+
+					</h:panelGrid>
+					<p:spacer height="10" />
+					<h:panelGrid columns="10" border="0">
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Hora Despacho Origen:"
+								style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtHoraOrigen"
+								binding="#{servicioVista.txtHora_Despacho_Origen}"
+								style="font-size:12px" size="20" />
+						</p:column>
+
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Medico Paciente:" style="font-size:12px" />
+							<p:spacer width="15" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtMedicoPaciente"
+								binding="#{servicioVista.txtMedico}" style="font-size:12px"
+								size="25" onkeyup="this.value=this.value.toUpperCase()" />
+						</p:column>
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Hora Llegada Sitio:" style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtHoraSitio"
+								binding="#{servicioVista.txtHora_Llegada_Sitio}"
+								style="font-size:12px" size="15" />
+						</p:column>
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Desplazamiento:" style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtDesplazamiento"
+								binding="#{servicioVista.txtDesplazamiento}"
+								style="font-size:12px" size="31"
+								onkeyup="this.value=this.value.toUpperCase()" />
+						</p:column>
+					</h:panelGrid>
+					<p:spacer width="10" />
+					<!-- datos recorrido paciente -->
+					<h:panelGrid columns="10" border="0">
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Hora Llegada Destino:"
+								style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtHoraDestino"
+								binding="#{servicioVista.txtHora_Llegada_Destino}"
+								style="font-size:12px" size="15" />
+						</p:column>
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Movil Disponible:" style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:inputText id="txtMovilDisponible"
+								binding="#{servicioVista.txtMovil_Disponible}"
+								style="font-size:12px" size="15"
+								onkeyup="this.value=this.value.toUpperCase()" />
+						</p:column>
+						<p:column>
+							<p:spacer width="10" />
+							<p:outputLabel value="Estado del Servicio:"
+								style="font-size:12px" />
+						</p:column>
+						<p:column>
+							<p:spacer width="10" />
+							<p:selectOneMenu id="sonColores"
+								binding="#{servicioVista.somColores}" style="width:125px">
+								<f:selectItem itemLabel="Seleccione" itemValue="" />
+								<f:selectItem itemLabel="ROJO" itemValue="ROJO" />
+								<f:selectItem itemLabel="AMARILLO" itemValue="AMARILLO" />
+								<f:selectItem itemLabel="AZUL" itemValue="AZUL" />
+								<f:selectItem itemLabel="MORADO" itemValue="MORADO" />
+								<f:selectItem itemLabel="FUCSIA" itemValue="FUCSIA" />
+							</p:selectOneMenu>
+						</p:column>
+					</h:panelGrid>
+					<p:spacer height="10" />
+
+					<!-- Botones -->
+					<div align="center">
+						<h:panelGrid columns="5" border="0">
+							<p:column>
+								<p:commandButton icon="ui-icon-disk" update="frmServicios"
+									id="btnCrear" value="Guardar"
+									binding="#{servicioVista.btnCrear}"
+									action="#{servicioVista.crearAction}" />
+							</p:column>
+
+							<p:column>
+								<p:commandButton icon="ui-icon-trash" update="frmServicios"
+									id="btnBorrar" value="Cancelar"
+									binding="#{usuariosVista.btnBorrar}"
+									action="#{usuariosVista.borrarAction}" />
+							</p:column>
+
+						</h:panelGrid>
+					</div>
+				</p:panel>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

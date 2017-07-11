@@ -1,0 +1,69 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+<h:body>
+	<h:form id="form">
+		<p:growl id="msgs" showDetail="true" />
+		<p:panel header="Lista Usuarios">
+			<p:dataTable id="dataTableUsuarios"
+				value="#{usuariosVista.losUsuarios}" var="usuarios" rows="4"
+				paginator="true" editable="true" editMode="cell">
+
+				<p:ajax event="cellEdit" listener="#{usuariosVista.onCellEdit}"
+					update=":form:msgs" />
+
+				<p:column headerText="ID" filterBy="#{usuarios.usuCedula}"
+					sortBy="#{usuarios.usuCedula}">
+					<p:outputLabel value="#{usuarios.usuCedula}" />
+				</p:column>
+
+				<p:column headerText="NOMBRE" filterBy="#{usuarios.usuNombre}">
+
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{usuarios.usuNombre}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{usuarios.usuNombre}" style="width:96%"
+								label="Year" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="LOGIN" filterBy="#{usuarios.usuLogin}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{usuarios.usuLogin}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{usuarios.usuLogin}" style="width:96%"
+								label="Year" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+				<p:column headerText="CLAVE" filterBy="#{usuarios.usuClave}">
+					<p:cellEditor>
+						<f:facet name="output">
+							<h:outputText value="#{usuarios.usuClave}" />
+						</f:facet>
+						<f:facet name="input">
+							<p:inputText value="#{usuarios.usuClave}" style="width:96%"
+								label="Year" />
+						</f:facet>
+					</p:cellEditor>
+				</p:column>
+
+
+			</p:dataTable>
+		</p:panel>
+	</h:form>
+
+</h:body>
+</html>

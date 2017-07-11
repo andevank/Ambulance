@@ -1,0 +1,368 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+
+<h:body>
+	<ui:composition template="/WEB-INF/facelets/template.xhtml">
+		<ui:define name="body">
+			<h:form id="frmServicios">
+				<p:growl id="msgs" showDetail="true" />
+				<p:panel header="Listado de Pacientes">
+					<p:dataTable id="rowEdit" var="servicios"
+						value="#{servicioVista.losServicios}" rows="50" paginator="true"
+						paginatorPosition="bottom" editable="true">
+
+						<p:ajax event="rowEdit" listener="#{servicioVista.onRowEdit}"
+							update=":frmServicios:msgs" />
+						<p:ajax event="rowEditCancel"
+							listener="#{servicioVista.onRowCancel}"
+							update=":frmServicios:msgs" />
+
+
+						<p:column headerText="Editar" style="font-size:12px" width="50">
+							<p:rowEditor />
+						</p:column>
+
+						<p:column headerText="Codigo Servicio" width="100"
+							style="font-size:12px; text-align: center">
+
+							<h:outputText value="#{servicios.codigoServicio}" />
+						</p:column>
+
+						<p:column headerText="Fecha Servicio"
+							filterBy="#{servicios.fechaServicio}" width="90"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.fechaServicio}" />
+						</p:column>
+						<p:column headerText="Hora Servicio" width="90"
+							style="font-size:12px">
+							<h:outputText value="#{servicios.horaServicio}" />
+						</p:column>
+
+						<p:column headerText="Estado Servicio" width="130"
+							style="font-size:12px">
+
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.estado}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:selectOneMenu id="sonColores" 
+										binding="#{servicioVista.somColores}" style="width:125px" update="frmUsuarios">
+										<f:selectItem itemLabel="Seleccione" itemValue="" />
+										<f:selectItem itemLabel="ROJO" itemValue="ROJO" />
+										<f:selectItem itemLabel="AMARILLO" itemValue="AMARILLO" />
+										<f:selectItem itemLabel="AZUL" itemValue="AZUL" />
+										<f:selectItem itemLabel="MORADO" itemValue="MORADO" />
+										<f:selectItem itemLabel="FUCSIA" itemValue="FUCSIA" />
+									</p:selectOneMenu>
+
+								</f:facet>
+							</p:cellEditor>
+
+
+						</p:column>
+						<p:column headerText="Operador" filterBy="#{servicios.operador}"
+							width="200" style="font-size:12px">
+
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.operador}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.operador}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Cliente / Entidad"
+							filterBy="#{servicios.operador}" width="200"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.entidad}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.entidad}" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="Autoriza / Codigo"
+							filterBy="#{servicios.autorizaCodigo}" width="200"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.autorizaCodigo}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.autorizaCodigo}" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="Hora Recogida" width="70"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.horaRecogida}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.horaRecogida}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Hora Cita" width="70" style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.horaCita}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.horaCita}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Comentarios / Observaciones" width="200"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.observaciones}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.observaciones}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Solicitante Servicio"
+							filterBy="#{servicios.solicitante}" width="200"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.solicitante}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.solicitante}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Tratamiento Requerido" width="200"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.trasladoRequerimiento}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.trasladoRequerimiento}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Perimetro Requerido" width="70"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.perimetroRequerido}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.perimetroRequerido}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Nombre del Paciente" width="200"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.nombrePaciente}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.nombrePaciente}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Edad Paciente" width="70"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.edadPaciente}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.edadPaciente}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Diagnostico" width="200"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.diagnostico}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.diagnostico}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Documento de Identidad"
+							filterBy="#{servicios.cedulaPaciente}" width="90"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.cedulaPaciente}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.cedulaPaciente}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Telefono Paciente" width="200"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.telefonoPaciente}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.telefonoPaciente}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Lugar de Origen" width="200"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.lugarOrigen}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.lugarOrigen}" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="Lugar Destino" width="200"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.lugarDestino}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.lugarDestino}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="# Historia Clinica" width="100"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.historiaPaciente}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.historiaPaciente}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Movil Despachada" width="90"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.movilDespachada}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.movilDespachada}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Hora Despacho Lugar Origen" width="120"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.horaDespachoOrigen}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.horaDespachoOrigen}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Medico" width="200" style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.medicoPaciente}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.medicoPaciente}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Llegada al sitio" width="70"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.horaLlegadaSitio}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.horaLlegadaSitio}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Desplazamiento"
+							filterBy="#{servicios.desplazamiento}" width="200"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.desplazamiento}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.desplazamiento}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Hora Llegada al destino" width="120"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.horaLlegadaDestino}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.horaLlegadaDestino}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+						<p:column headerText="Movil Dispobible" width="70"
+							style="font-size:12px">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servicios.movilDisponible}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servicios.movilDisponible}" />
+								</f:facet>
+							</p:cellEditor>
+
+						</p:column>
+					</p:dataTable>
+
+				</p:panel>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
